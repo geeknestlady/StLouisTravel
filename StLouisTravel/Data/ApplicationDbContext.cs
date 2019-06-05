@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using StLouisTravel.Models;
 
 namespace StLouisTravel.Data
 {
@@ -12,5 +13,6 @@ namespace StLouisTravel.Data
             : base(options)
         {
         }
+        public DbSet<StLouisTravel.Models.Location> Location { get; set; }
     }
 }
