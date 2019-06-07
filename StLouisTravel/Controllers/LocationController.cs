@@ -13,9 +13,15 @@ namespace StLouisTravel.Controllers
 
         private ILocationRepository locationRepository = RepositoryFactory.GetLocationRepository();
 
+        private ApplicationDbContext context;
+        public LocationController(ApplicationDbContext context)
+        {
+            this.context = context;
+        }
+
         public IActionResult Index()
         {
-            List<Location> locations = locationRepository.GetLocations().ToList();
+            List<Location> locations = context.Location.ToList();
             return View(locations);
         }
 
@@ -29,7 +35,9 @@ namespace StLouisTravel.Controllers
         [HttpPost]
         public IActionResult Create(Location location)
         {
-            locationRepository.Save(location);
+
+            context.Add(location);
+            context.SaveChanges();
             return RedirectToAction(actionName: nameof(Index));
         }
 

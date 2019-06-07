@@ -13,6 +13,6 @@ namespace StLouisTravel.Data
             : base(options)
         {
         }
-        public DbSet<StLouisTravel.Models.Location> Location { get; set; }
+        public DbSet<Location> Location { get; set; }
     }
 }
