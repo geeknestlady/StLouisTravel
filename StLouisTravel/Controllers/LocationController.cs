@@ -11,7 +11,7 @@ namespace StLouisTravel.Controllers
     public class LocationController : Controller
     {
 
-        private ILocationRepository locationRepository = RepositoryFactory.GetLocationRepository();
+        private IRepository locationRepository = RepositoryFactory.GetLocationRepository();
 
         private ApplicationDbContext context;
         public LocationController(ApplicationDbContext context)
@@ -40,6 +40,15 @@ namespace StLouisTravel.Controllers
             context.SaveChanges();
             return RedirectToAction(actionName: nameof(Index));
         }
+
+        [HttpGet]
+        public IActionResult Details(int id)
+        {
+            return View();
+        }
+
+       
+      
 
     }
 }

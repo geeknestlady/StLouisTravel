@@ -8,9 +8,9 @@ namespace StLouisTravel.Data
 {
     public static class RepositoryFactory
     {
-        private static ILocationRepository locationRepository;
+        private static IRepository locationRepository;
 
-        public static ILocationRepository GetLocationRepository()
+        public static IRepository GetLocationRepository()
         {
             if (locationRepository == null)
                 locationRepository = new LocationRepository();
