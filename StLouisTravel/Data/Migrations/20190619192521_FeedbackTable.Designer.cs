@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using StLouisTravel.Data;
 
 namespace StLouisTravel.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190619192521_FeedbackTable")]
+    partial class FeedbackTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -192,6 +194,8 @@ namespace StLouisTravel.Data.Migrations
 
                     b.Property<int>("LocationId");
 
+                    b.Property<string>("LocationName");
+
                     b.Property<int>("Rating");
 
                     b.Property<string>("Review");
@@ -267,7 +271,7 @@ namespace StLouisTravel.Data.Migrations
 
             modelBuilder.Entity("StLouisTravel.Models.Feedback", b =>
                 {
-                    b.HasOne("StLouisTravel.Models.Location", "LocationName")
+                    b.HasOne("StLouisTravel.Models.Location")
                         .WithMany("Ratings")
                         .HasForeignKey("LocationId")
                         .OnDelete(DeleteBehavior.Cascade);

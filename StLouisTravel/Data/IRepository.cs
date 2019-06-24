@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace StLouisTravel.Data
 {
-    public interface IRepository
+    public interface IRepository<T>
     {
-            IModel GetById(int id);
-            List<IModel> GetModels();
-            int Save(IModel model);
-            void Delete(int id);
-            void Update(IModel model);
-        
+        T GetById(int id);
+        List<T> GetModels();
+        int Save(T model);
+        void Delete(int id);
+        void Update(T model);
+
     }
 }

@@ -4,6 +4,7 @@ using System.Text;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using StLouisTravel.Models;
+using StLouisTravel.ViewModels.Locations;
 
 namespace StLouisTravel.Data
 {
@@ -14,5 +15,7 @@ namespace StLouisTravel.Data
         {
         }
         public DbSet<Location> Location { get; set; }
+        public DbSet<Feedback> Feedbacks { get; set; }
+        public DbSet<StLouisTravel.ViewModels.Locations.CreateLocationViewModel> CreateLocationViewModel { get; set; }
     }
 }

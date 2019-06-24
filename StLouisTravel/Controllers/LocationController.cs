@@ -5,24 +5,24 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using StLouisTravel.Models;
 using StLouisTravel.Data;
+using StLouisTravel.ViewModels.Locations;
 
 namespace StLouisTravel.Controllers
 {
     public class LocationController : Controller
     {
 
-        private IRepository locationRepository = RepositoryFactory.GetLocationRepository();
+        private RepositoryFactory repositoryFactory;
 
-        private ApplicationDbContext context;
-        public LocationController(ApplicationDbContext context)
+        public LocationController(RepositoryFactory repositoryFactory)
         {
-            this.context = context;
+            this.repositoryFactory = repositoryFactory;
         }
 
         public IActionResult Index()
         {
-            List<Location> locations = context.Location.ToList();
-            return View(locations);
+            List<ListLocationViewModel> movies = ListLocationViewModel.GetLocations(repositoryFactory);
+            return View(movies);
         }
 
         [HttpGet]
@@ -33,17 +33,19 @@ namespace StLouisTravel.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(Location location)
+        public IActionResult Create(CreateLocationViewModel model)
         {
+            if (!ModelState.IsValid)
+                return View(model);
 
-            context.Add(location);
-            context.SaveChanges();
+            model.Persist(repositoryFactory);
             return RedirectToAction(actionName: nameof(Index));
         }
 
         [HttpGet]
         public IActionResult Details(int id)
         {
+            
             return View();
         }
 

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<StLouisTravel.Models.Location>
+﻿@model IEnumerable<StLouisTravel.ViewModels.Locations.ListLocationViewModel>
 
 @{
     ViewData["Title"] = "Index";
@@ -21,11 +21,17 @@
             <th>
                 @Html.DisplayNameFor(model => model.Description)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AverageRating)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumberOfRatings)
+            </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+        @foreach (var item in Model) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
@@ -37,7 +43,14 @@
                 @Html.DisplayFor(modelItem => item.Description)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.AverageRating)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumberOfRatings)
+            </td>
+            <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                @Html.ActionLink("Rate", "Details", "Feedback", new { locationId = item.Id }) |
                 <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
                 <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
             </td>

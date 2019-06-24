@@ -6,15 +6,21 @@ using StLouisTravel.Models;
 
 namespace StLouisTravel.Data
 {
-    public static class RepositoryFactory
+    public class RepositoryFactory
     {
-        private static IRepository locationRepository;
+        private ApplicationDbContext context;
 
-        public static IRepository GetLocationRepository()
+        public RepositoryFactory(ApplicationDbContext context)
         {
-            if (locationRepository == null)
-                locationRepository = new LocationRepository();
-            return locationRepository;
+            this.context = context;
+        }
+        public IRepository<Location> GetLocationRepository()
+        {
+            return new Repository<Location>(context);
+        }
+        public IRepository<Feedback> GetFeedbackRepository()
+        {
+            return new Repository<Feedback>(context);
         }
 
     }

@@ -3,40 +3,50 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace StLouisTravel.Data
 {
-    public class BaseRepository : IRepository
+    public class Repository<TEntity> : IRepository<TEntity> where TEntity : class, IModel
     {
-        public List<IModel> models = new List<IModel>();
-        protected int nextId = 1;
+        protected ApplicationDbContext context;
+        protected DbSet<TEntity> models;
+
+        public Repository(ApplicationDbContext context)
+        {
+            this.context = context;
+            this.models = context.Set<TEntity>();
+        }
 
         public void Delete(int id)
         {
-            models.RemoveAll(d => d.Id == id);
+            var model = this.GetById(id);
+            context.Remove(model);
+            context.SaveChanges();
         }
 
-        public virtual IModel GetById(int id)
+        public TEntity GetById(int id)
         {
             return models.SingleOrDefault(d => d.Id == id);
         }
 
-        public virtual List<IModel> GetModels()
+        public List<TEntity> GetModels()
         {
-            return models;
+            return models.ToList();
         }
 
-        public int Save(IModel model)
+        public int Save(TEntity model)
         {
-            model.Id = nextId++;
-            models.Add(model);
+           
+            context.Add(model);
+            context.SaveChanges();
             return model.Id;
         }
 
-        public void Update(IModel model)
+        public void Update(TEntity model)
         {
-            this.Delete(model.Id);
-            models.Add(model);
+            context.Update(model);
+            context.SaveChanges();
         }
 
     }
