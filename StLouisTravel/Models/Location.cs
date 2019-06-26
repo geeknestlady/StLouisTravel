@@ -11,6 +11,6 @@ namespace StLouisTravel.Models
         public string Address { get; set; }
         public int Id { get; set; }
         public string Description { get; set; }
-        public IList<Feedback> Ratings { get; set; }
+        public virtual List<Feedback> Ratings { get; set; }
     }
 }

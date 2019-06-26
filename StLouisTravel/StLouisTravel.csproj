@@ -18,7 +18,7 @@
 
 
   <ItemGroup>
-    <Folder Include="ViewModels\Feedbacks\" />
+    <Folder Include="Views\Feedback\" />
   </ItemGroup>
 
 </Project>

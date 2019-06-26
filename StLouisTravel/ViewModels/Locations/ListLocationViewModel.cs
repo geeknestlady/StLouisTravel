@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace StLouisTravel.ViewModels.Locations
 {
@@ -14,8 +15,10 @@ namespace StLouisTravel.ViewModels.Locations
         {
             return factory.GetLocationRepository()
                 .GetModels()
+                //.Include(m => m.Ratings)
                 .Select(m => new ListLocationViewModel(m))
                 .ToList();
+           
         }
 
         [HiddenInput(DisplayValue = false)]
@@ -24,7 +27,7 @@ namespace StLouisTravel.ViewModels.Locations
         public string Name { get; set; }
         public string Address { get; set; }        
         public string Description { get; set; }
-        public string AverageRating { get; set; }
+        public double AverageRating { get; set; }
         public int NumberOfRatings { get; set; }
 
         public ListLocationViewModel(Location location)
@@ -33,8 +36,16 @@ namespace StLouisTravel.ViewModels.Locations
             this.Name = location.Name;
             this.Address = location.Address;
             this.Description = location.Description;
-            this.AverageRating = location.Ratings.Count > 0 ? Math.Round(location.Ratings.Average(x => x.Rating), 2).ToString() : "none";
-            this.NumberOfRatings = location.Ratings.Count;
+            if (location.Ratings.Count() == 0)
+            {
+                this.AverageRating = 0;
+            }
+            else
+            {
+                this.AverageRating = Math.Round(location.Ratings.Average(x => x.Rating));
+            }
+                //this.AverageRating = location.Ratings.Count >= 0 ? Math.Round(location.Ratings.Average(x => x.Rating), 2).ToString() : "none";
+                this.NumberOfRatings = location.Ratings.Count;
         }
     }
 }

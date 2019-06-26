@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using StLouisTravel.ViewModels.Feedbacks;
 
 namespace StLouisTravel.Controllers
 {
@@ -20,7 +21,7 @@ namespace StLouisTravel.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create()
+        public IActionResult Create(int locationId, FeedbackCreateViewModel model)
         {
             return View();
         }
