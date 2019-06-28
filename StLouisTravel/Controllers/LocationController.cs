@@ -50,6 +50,22 @@ namespace StLouisTravel.Controllers
             return View(detailsViewModel);
         }
 
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Edit(int id, EditLocationViewModel location )
+        {
+            if (!ModelState.IsValid)
+                return View(location);
+
+            location.Update(id, repositoryFactory);
+            return RedirectToAction(actionName: nameof(Index));
+        }
+
        
       
 

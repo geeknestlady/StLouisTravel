@@ -40,7 +40,7 @@
         @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.ActionLink(item.Name, "Details", "Location", new { locationId = item.Id })
+                @Html.ActionLink(item.Name, "Details", "Location", new { id = item.Id })
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Address)
@@ -58,10 +58,10 @@
                 @Html.DisplayFor(modelItem => item.NumberOfRatings)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                @Html.ActionLink("Rate", "Create", "Feedback", new { locationId = item.Id }) |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                |<a asp-action="Edit" asp-route-id="@item.Id">Edit</a>|
+                |@Html.ActionLink("Rate", "Create", "Feedback", new { locationId = item.Id })|
+                |<a asp-action="Details" asp-route-id="@item.Id">Details</a>|
+                |<a asp-action="Delete" asp-route-id="@item.Id">Delete</a>|
             </td>
         </tr>
 }

@@ -19,6 +19,7 @@ namespace StLouisTravel.Data
         public DbSet<Feedback> Feedbacks { get; set; }
         public DbSet<StLouisTravel.ViewModels.Feedbacks.FeedbackCreateViewModel> FeedbackCreateViewModel { get; set; }
         public DbSet<StLouisTravel.ViewModels.Locations.DetailsLocationViewModels> DetailsLocationViewModels { get; set; }
+        public DbSet<StLouisTravel.ViewModels.Locations.EditLocationViewModel> EditLocationViewModel { get; set; }
         //public DbSet<StLouisTravel.ViewModels.Locations.CreateLocationViewModel> CreateLocationViewModel { get; set; }
     }
 }

@@ -3,82 +3,82 @@
 @{
     ViewData["Title"] = "Details";
 }
-
-<h1>Travel St. Louis</h1>
-
-<div>
-    <h4>Details</h4>
-    <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Address)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Address)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Region)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Region)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-</div>
-<div>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>
-                    Ratings
-                </th>
-                <th>
-                    Reviews
-                </th>
-            </tr>
-        </thead>
-
-
-
-        @foreach (var item in Model.Feedbacks)
-        {
-            <tbody>
-            <td>
-                @Html.DisplayFor(modelItem => item.Rating)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Review)
-            </td>
-            </tbody>
-        }
-
-
-        @*@foreach (var item in Model.Feedbacks)
-        {
-
-
-        }*@
+<div class="text-center">
+    <h1>Travel St. Louis</h1>
+    </div>
+    <div>
+        <h4>Details</h4>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Address)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Address)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Region)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Region)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Description)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Description)
+            </dd>
+    </div>
+    <div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        Ratings
+                    </th>
+                    <th>
+                        Reviews
+                    </th>
+                </tr>
+            </thead>
 
 
 
-    </table>
-           
-        </div>
+            @foreach (var item in Model.Feedbacks)
+            {
+                <tbody>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Rating)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Review)
+                </td>
+                </tbody>
+            }
 
-   
 
-<div>
-    <a asp-controller="Feedback" asp-action="Create" asp-route-locationID="@Model.Id">Add Feedback</a> |
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a> |
-</div>
+            @*@foreach (var item in Model.Feedbacks)
+                {
+
+
+                }*@
+
+
+
+        </table>
+
+    </div>
+
+
+
+    <div>
+        <a asp-controller="Feedback" asp-action="Create" asp-route-locationID="@Model.Id">Add Feedback</a> |
+        <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+        <a asp-action="Index">Back to List</a> |
+    </div>
