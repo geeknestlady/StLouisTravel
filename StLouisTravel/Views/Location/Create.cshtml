@@ -23,6 +23,27 @@
                 <span asp-validation-for="Address" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="Region" class="control-label"></label>
+                <select asp-for="Region" class="form-control">
+                    <option>Downtown</option>
+                    <option>Midtown</option>
+                    <option>Dogtown</option>
+                    <option>Central West End</option>
+                    <option>South City</option>
+                    <option>North City</option>
+                    <option>The Grove</option>
+                    <option>The Hill</option>
+                    <option>Soulard</option>
+                    <option>University City</option>
+                    <option>Metro East</option>
+                    <option>West County</option>
+                    <option>South County</option>
+                    <option>North County</option>
+
+                </select>
+                <span asp-validation-for="Region" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="Description" class="control-label"></label>
                 <input asp-for="Description" class="form-control" />
                 <span asp-validation-for="Description" class="text-danger"></span>

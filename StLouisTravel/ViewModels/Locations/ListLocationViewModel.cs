@@ -25,7 +25,8 @@ namespace StLouisTravel.ViewModels.Locations
         public int Id { get; set; }
 
         public string Name { get; set; }
-        public string Address { get; set; }        
+        public string Address { get; set; }  
+        public string Region { get; set; }
         public string Description { get; set; }
         public double AverageRating { get; set; }
         public int NumberOfRatings { get; set; }
@@ -35,6 +36,7 @@ namespace StLouisTravel.ViewModels.Locations
             this.Id = location.Id;
             this.Name = location.Name;
             this.Address = location.Address;
+            this.Region = location.Region;
             this.Description = location.Description;
             if (location.Ratings.Count() == 0)
             {

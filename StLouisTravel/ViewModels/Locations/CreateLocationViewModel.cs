@@ -12,8 +12,10 @@ namespace StLouisTravel.ViewModels.Locations
     {
         public string Name { get; set; }
         public string Address { get; set; }
+        public string Region { get; set; }
         public int Id { get; set; }
         public string Description { get; set; }
+       
 
         public CreateLocationViewModel() { }
 
@@ -23,6 +25,7 @@ namespace StLouisTravel.ViewModels.Locations
             {
                 Name = this.Name,
                 Address = this.Address,
+                Region = this.Region,
                 Description = this.Description
             };
             repositoryFactory.GetLocationRepository().Save(location);

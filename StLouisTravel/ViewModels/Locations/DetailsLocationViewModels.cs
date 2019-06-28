@@ -36,6 +36,7 @@ namespace StLouisTravel.ViewModels.Locations
             {
                 Name = location.Name,
                 Address = location.Address,
+                Region = location.Region,
                 Description = location.Description,
                 Id = location.Id,
                 Feedbacks = feedbackDetailsViewModel
@@ -54,6 +55,7 @@ namespace StLouisTravel.ViewModels.Locations
 
         public string Name { get; set; }
         public string Address { get; set; }
+        public string Region { get; set; }
         public string Description { get; set; }
         public virtual List<FeedbackListViewModel> Feedbacks { get; set; }
        
