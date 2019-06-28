@@ -36,8 +36,8 @@ namespace StLouisTravel
             });
 
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection")));
+                    options.UseLazyLoadingProxies()
+                        .UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddScoped<RepositoryFactory>();
             services.AddDefaultIdentity<IdentityUser>()
                 .AddDefaultUI(UIFramework.Bootstrap4)

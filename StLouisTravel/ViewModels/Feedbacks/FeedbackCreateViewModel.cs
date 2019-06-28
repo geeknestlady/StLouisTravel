@@ -10,33 +10,36 @@ namespace StLouisTravel.ViewModels.Feedbacks
 {
     public class FeedbackCreateViewModel
     {
-        private string ratings = "12345";
-        private readonly RepositoryFactory repositoryFactory;
+        //private string ratings = "12345";
+        //private readonly RepositoryFactory repositoryFactory;
 
+        public int Id { get; set; }
         public int Rating { get; set; }
         public string Review { get; set; }
+        //public string Location { get; set; }
 
         public int LocationId { get; set; }
-        public Location Location { get; set; }
-        public SelectList Ratings { get { return GetRatings(); } }
+        //public Location Location { get; set; }
+        //public SelectList Ratings { get { return GetRatings(); } }
 
-        public FeedbackCreateViewModel(RepositoryFactory repositoryFactory)
-        {
-            this.repositoryFactory = repositoryFactory;
-        }
+        //public FeedbackCreateViewModel(RepositoryFactory repositoryFactory)
+        //{
+        //    this.repositoryFactory = repositoryFactory;
+        //}
 
-        private SelectList GetRatings()
-        {
-            var ratingSelectListItems = ratings.Select(r => new SelectListItem(r.ToString(), r.ToString()));
-            return new SelectList(ratingSelectListItems);
-        }
+        //private SelectList GetRatings()
+        //{
+        //    var ratingSelectListItems = ratings.Select(r => new SelectListItem(r.ToString(), r.ToString()));
+        //    return new SelectList(ratingSelectListItems);
+        //}
 
-        internal void Persist()
+        internal void Persist(RepositoryFactory repositoryFactory)
         {
             Feedback rating = new Feedback
             {
                 LocationId = this.LocationId,
-                Rating = this.Rating
+                Rating = this.Rating,
+                Review = this.Review
             };
             repositoryFactory.GetFeedbackRepository().Save(rating);
         }

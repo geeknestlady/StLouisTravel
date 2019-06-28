@@ -10,15 +10,14 @@ namespace StLouisTravel.ViewModels.Feedbacks
 {
     public class FeedbackListViewModel
     {
-        private string ratings = "12345";
-
+        
         public int Id { get; set; }
         public int Rating { get; set; }
         public string Review { get; set; }
 
         public int LocationId { get; set; }
         public Location Location { get; set; }
-        public SelectList Ratings { get { return GetRatings(); } }
+        //public SelectList Ratings { get { return GetRatings(); } }
 
 
         //public FeedbackListViewModel(int id, RepositoryFactory repositoryFactory)
@@ -31,10 +30,10 @@ namespace StLouisTravel.ViewModels.Feedbacks
         //    this.Rating = rating.Rating;
         //}
 
-        private SelectList GetRatings()
-        {
-            var ratingSelectListItems = ratings.Select(r => new SelectListItem(r.ToString(), r.ToString(), this.Rating == r));
-            return new SelectList(ratingSelectListItems);
-        }
+        //    private SelectList GetRatings()
+        //    {
+        //        var ratingSelectListItems = ratings.Select(r => new SelectListItem(r.ToString(), r.ToString(), this.Rating == r));
+        //        return new SelectList(ratingSelectListItems);
+        //    }
     }
 }

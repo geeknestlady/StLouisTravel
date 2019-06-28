@@ -43,7 +43,7 @@ namespace StLouisTravel.Controllers
         }
 
         [HttpGet]
-        public IActionResult Details(int id)
+        public IActionResult Details(int locationId)
         {
             
             return View();
