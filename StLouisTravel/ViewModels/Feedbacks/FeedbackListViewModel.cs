@@ -16,7 +16,7 @@ namespace StLouisTravel.ViewModels.Feedbacks
         public string Review { get; set; }
 
         public int LocationId { get; set; }
-        public Location Location { get; set; }
+        //public Location Location { get; set; }
         //public SelectList Ratings { get { return GetRatings(); } }
 
 

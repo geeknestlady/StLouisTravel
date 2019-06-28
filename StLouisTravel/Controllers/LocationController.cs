@@ -43,10 +43,11 @@ namespace StLouisTravel.Controllers
         }
 
         [HttpGet]
-        public IActionResult Details(int locationId)
+        public IActionResult Details(int id)
         {
-            
-            return View();
+
+            DetailsLocationViewModels detailsViewModel = DetailsLocationViewModels.GetDetails(repositoryFactory, id);
+            return View(detailsViewModel);
         }
 
        
