@@ -22,6 +22,14 @@ namespace StLouisTravel.Data
         {
             return new Repository<Feedback>(context);
         }
+        public IRepository<Category> GetCategoryRepository()
+        {
+            return new Repository<Category>(context);
+        }
+        public IRepository<CategoryLocation> GetCategoryLocationRepository()
+        {
+            return new Repository<CategoryLocation>(context);
+        }
 
     }
 

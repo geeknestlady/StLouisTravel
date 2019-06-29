@@ -5,10 +5,11 @@ using System.Threading.Tasks;
 
 namespace StLouisTravel.Models
 {
-    public class Category
+    public class Category : IModel
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public int LocationId { get; set; }
+        
+        public virtual List<CategoryLocation> CategoryLocations { get; set; }
     }
 }

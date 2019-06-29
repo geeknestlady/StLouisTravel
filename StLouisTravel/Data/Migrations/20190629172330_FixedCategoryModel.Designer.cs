@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using StLouisTravel.Data;
 
 namespace StLouisTravel.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190629172330_FixedCategoryModel")]
+    partial class FixedCategoryModel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -190,30 +192,15 @@ namespace StLouisTravel.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("LocationId");
+
                     b.Property<string>("Name");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories");
-                });
-
-            modelBuilder.Entity("StLouisTravel.Models.CategoryLocation", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("CategoryId");
-
-                    b.Property<int>("LocationId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CategoryId");
-
                     b.HasIndex("LocationId");
 
-                    b.ToTable("CategoryLocations");
+                    b.ToTable("Categories");
                 });
 
             modelBuilder.Entity("StLouisTravel.Models.Feedback", b =>
@@ -299,15 +286,10 @@ namespace StLouisTravel.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("StLouisTravel.Models.CategoryLocation", b =>
+            modelBuilder.Entity("StLouisTravel.Models.Category", b =>
                 {
-                    b.HasOne("StLouisTravel.Models.Category", "Category")
-                        .WithMany("CategoryLocations")
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("StLouisTravel.Models.Location", "Location")
-                        .WithMany("CategoryLocations")
+                    b.HasOne("StLouisTravel.Models.Location")
+                        .WithMany("Categories")
                         .HasForeignKey("LocationId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });

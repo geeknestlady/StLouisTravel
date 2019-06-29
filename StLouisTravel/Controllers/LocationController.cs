@@ -28,15 +28,19 @@ namespace StLouisTravel.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            
-            return View();
+
+            CreateLocationViewModel model = new CreateLocationViewModel(repositoryFactory);
+            return View(model);
         }
 
         [HttpPost]
         public IActionResult Create(CreateLocationViewModel model)
         {
             if (!ModelState.IsValid)
+            {
+                model.ResetCategoryList(repositoryFactory);
                 return View(model);
+            }
 
             model.Persist(repositoryFactory);
             return RedirectToAction(actionName: nameof(Index));

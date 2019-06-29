@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using StLouisTravel.Models;
 using StLouisTravel.ViewModels.Locations;
 using StLouisTravel.ViewModels.Feedbacks;
+using StLouisTravel.ViewModels.Categories;
 
 namespace StLouisTravel.Data
 {
@@ -17,9 +18,13 @@ namespace StLouisTravel.Data
         }
         public DbSet<Location> Location { get; set; }
         public DbSet<Feedback> Feedbacks { get; set; }
-        public DbSet<StLouisTravel.ViewModels.Feedbacks.FeedbackCreateViewModel> FeedbackCreateViewModel { get; set; }
-        public DbSet<StLouisTravel.ViewModels.Locations.DetailsLocationViewModels> DetailsLocationViewModels { get; set; }
-        public DbSet<StLouisTravel.ViewModels.Locations.EditLocationViewModel> EditLocationViewModel { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<CategoryLocation> CategoryLocations { get; set; }
+        //public DbSet<StLouisTravel.ViewModels.Categories.CategoryListViewModel> CategoryListViewModel { get; set; }
+        //public DbSet<StLouisTravel.ViewModels.Categories.CategoryCreateViewModel> CategoryCreateViewModel { get; set; }
+        //public DbSet<StLouisTravel.ViewModels.Feedbacks.FeedbackCreateViewModel> FeedbackCreateViewModel { get; set; }
+        //public DbSet<StLouisTravel.ViewModels.Locations.DetailsLocationViewModels> DetailsLocationViewModels { get; set; }
+        //public DbSet<StLouisTravel.ViewModels.Locations.EditLocationViewModel> EditLocationViewModel { get; set; }
         //public DbSet<StLouisTravel.ViewModels.Locations.CreateLocationViewModel> CreateLocationViewModel { get; set; }
     }
 }
