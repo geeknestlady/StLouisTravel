@@ -7,6 +7,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using StLouisTravel.ViewModels.Feedbacks;
+using StLouisTravel.ViewModels.Categories;
 
 namespace StLouisTravel.ViewModels.Locations
 {
@@ -23,6 +24,26 @@ namespace StLouisTravel.ViewModels.Locations
                 .Where(f => f.LocationId == id)
                 .ToList();
 
+            List<CategoryLocation> categoriesLocators = factory.GetCategoryLocationRepository()
+                .GetModels()
+                .Where(c => c.LocationId == id)
+                .ToList();
+            List<Category> allCategories = factory.GetCategoryRepository()
+                .GetModels()
+                .ToList();
+            List<CategoryListDetailViewModel> categories = new List<CategoryListDetailViewModel>();
+            foreach(Category allCategory in allCategories)
+            {
+                foreach(CategoryLocation categoriesLocator in categoriesLocators)
+                {
+                    CategoryListDetailViewModel cats = new CategoryListDetailViewModel();
+                    if (allCategory.Id == categoriesLocator.CategoryId)
+                    {
+                        allCategory.Name = cats.CatName;
+                        categories.Add(cats);
+                    }
+                }
+            }
             List<FeedbackListViewModel> feedbackDetailsViewModel = new List<FeedbackListViewModel>();
 
             foreach(Feedback feedbackDetail in feedbackDetails)
@@ -39,7 +60,8 @@ namespace StLouisTravel.ViewModels.Locations
                 Region = location.Region,
                 Description = location.Description,
                 Id = location.Id,
-                Feedbacks = feedbackDetailsViewModel
+                Feedbacks = feedbackDetailsViewModel,
+                Categories = categories
             };
 
             //return factory.GetLocationRepository()
@@ -58,6 +80,8 @@ namespace StLouisTravel.ViewModels.Locations
         public string Region { get; set; }
         public string Description { get; set; }
         public virtual List<FeedbackListViewModel> Feedbacks { get; set; }
+        public virtual List<CategoryLocation> CategoriesLocations { get; set; }
+        public virtual List<CategoryListDetailViewModel> Categories { get; set; }
        
 
       

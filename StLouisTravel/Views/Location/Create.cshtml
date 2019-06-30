@@ -47,10 +47,25 @@
                 <label asp-for="CategoryIds" class="control-label"></label>
                 @foreach (var category in Model.Categories)
                 {
+                   <div>
+                       <table class="table">
+                           <thead>
+                               <tr>
+                                <th>
                     <label>@category.Name</label>
+                                    </th>
+                                   </tr>
+                               </thead>
+                           <tbody>
+                            <td>
                     <input type="checkbox" name="CategoryIds" value="@category.Id" />
+                                </td>
+                           </tbody>
+                           </table>
+                    </div>
                 }
             </div>
+           
             <div class="form-group">
                 <label asp-for="Description" class="control-label"></label>
                 <input asp-for="Description" class="form-control" />

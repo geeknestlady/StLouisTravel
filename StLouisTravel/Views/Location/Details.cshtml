@@ -62,13 +62,16 @@
                 </tbody>
             }
 
-
-            @*@foreach (var item in Model.Feedbacks)
-                {
-
-
-                }*@
-
+            @foreach (var item in Model.Categories)
+            {
+                <tbody>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CatName)
+                </td>
+               
+                </tbody>
+            }
+       
 
 
         </table>

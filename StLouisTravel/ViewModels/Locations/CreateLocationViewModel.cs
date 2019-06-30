@@ -21,7 +21,7 @@ namespace StLouisTravel.ViewModels.Locations
 
         public int Id { get; set; }
 
-        [Display(Name = "Select Category/Categories")]
+        [Display(Name = "Select one or more categories")]
         public List<int> CategoryIds { get; set; }
         public List<Category> Categories { get; set; }
 

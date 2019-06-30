@@ -8,7 +8,11 @@ using System.Threading.Tasks;
 namespace StLouisTravel.ViewModels.Categories
 {
     public class CategoryListViewModel
+
     {
+        public int Id { get; set; }
+        public string Name { get; set; }
+
         internal static List<CategoryListViewModel> GetCategories(RepositoryFactory factory)
         {
             return factory.GetCategoryRepository()
@@ -25,7 +29,6 @@ namespace StLouisTravel.ViewModels.Categories
                 Name = c.Name
             };
         }
-        public int Id { get; set; }
-        public string Name { get; set; }
+      
     }
 }
