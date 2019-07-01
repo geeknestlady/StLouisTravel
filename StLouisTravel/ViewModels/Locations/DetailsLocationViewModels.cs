@@ -39,7 +39,8 @@ namespace StLouisTravel.ViewModels.Locations
                     CategoryListDetailViewModel cats = new CategoryListDetailViewModel();
                     if (allCategory.Id == categoriesLocator.CategoryId)
                     {
-                        allCategory.Name = cats.CatName;
+                        cats.CatName = allCategory.Name;
+                        
                         categories.Add(cats);
                     }
                 }
