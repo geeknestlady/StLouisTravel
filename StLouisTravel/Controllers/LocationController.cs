@@ -57,7 +57,11 @@ namespace StLouisTravel.Controllers
         [HttpGet]
         public IActionResult Edit(int id)
         {
-            return View();
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+            return View(model: new EditLocationViewModel(id, repositoryFactory));
         }
 
         [HttpPost]
