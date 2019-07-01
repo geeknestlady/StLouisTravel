@@ -24,6 +24,8 @@ namespace StLouisTravel.ViewModels.Locations
         [Display(Name = "Select one or more categories")]
         public List<int> CategoryIds { get; set; }
         public List<Category> Categories { get; set; }
+        public List<Category> Selected { get; set; }
+        public List<Category> Unselected { get; set; }
 
         public EditLocationViewModel() { }
 
@@ -44,6 +46,30 @@ namespace StLouisTravel.ViewModels.Locations
              Categories = repositoryFactory.GetCategoryRepository()
                .GetModels()
                .ToList();
+
+            List<Category> selected = new List<Category>();
+            List<Category> unselected = new List<Category>();
+
+            foreach(var category in Categories)
+            {
+                foreach(var categoryId in CategoryIds)
+                {
+                    Category cat = new Category();
+                    if (categoryId == category.Id)
+                    {
+                        cat.Name = category.Name;
+                        selected.Add(cat);
+                    }
+                    else
+                    {
+                        cat.Name = category.Name;
+                        unselected.Add(cat);
+                    }
+                }
+            }
+
+            Selected = selected;
+            Unselected = unselected;
         }
 
         public void Update(int id, RepositoryFactory repositoryFactory)

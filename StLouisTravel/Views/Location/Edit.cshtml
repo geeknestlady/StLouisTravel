@@ -46,22 +46,43 @@
             </div>
             <div class="form-group">
                 <label asp-for="CategoryIds" class="control-label"></</label>
-                @foreach (var category in Model.Categories)
+                @foreach (var select in Model.Selected)
                 {
-                    <label>@category.Name</label>
-                    @foreach (var categoryId in Model.CategoryIds)
-                    {
-                        @if (categoryId == category.Id)
-                        {
-                            <input type="checkbox" asp-for="CategoryIds" value="@category.Id" checked />
-                        }
-                        else
-                        {
-                            <input type="checkbox" asp-for="CategoryIds" value="@category.Id" />
-                        }
-                    }
-
-
+                <div>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>
+                                    <label>@select.Name</label>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <td>
+                            <input type="checkbox" name="CategoryIds" value="@select.Id" checked/>
+                        </td>
+                        </tbody>
+                    </table>
+                </div>
+                }
+                @foreach (var unselect in Model.Unselected)
+                {
+                <div>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>
+                                    <label>@unselect.Name</label>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <td>
+                            <input type="checkbox" name="CategoryIds" value="@unselect.Id" />
+                        </td>
+                        </tbody>
+                    </table>
+                </div>
                 }
             </div>
 </div>
