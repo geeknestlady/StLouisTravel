@@ -68,8 +68,10 @@ namespace StLouisTravel.Controllers
         public IActionResult Edit(int id, EditLocationViewModel location )
         {
             if (!ModelState.IsValid)
+            {
+                location.ResetCategoryList(repositoryFactory);
                 return View(location);
-
+            }
             location.Update(id, repositoryFactory);
             return RedirectToAction(actionName: nameof(Index));
         }

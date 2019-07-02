@@ -1,5 +1,6 @@
 ﻿using StLouisTravel.Data;
 using StLouisTravel.Models;
+using StLouisTravel.ViewModels.Categories;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -24,8 +25,8 @@ namespace StLouisTravel.ViewModels.Locations
         [Display(Name = "Select one or more categories")]
         public List<int> CategoryIds { get; set; }
         public List<Category> Categories { get; set; }
-        public List<Category> Selected { get; set; }
-        public List<Category> Unselected { get; set; }
+        public List<CategoryListViewModel> Selected { get; set; }
+        public List<CategoryListViewModel> Unselected { get; set; }
 
         public EditLocationViewModel() { }
 
@@ -47,29 +48,26 @@ namespace StLouisTravel.ViewModels.Locations
                .GetModels()
                .ToList();
 
-            List<Category> selected = new List<Category>();
-            List<Category> unselected = new List<Category>();
+            //List<CategoryListViewModel> selected = new List<CategoryListViewModel>();
+            //List<CategoryListViewModel> unselected = new List<CategoryListViewModel>();
 
-            foreach(var category in Categories)
-            {
-                foreach(var categoryId in CategoryIds)
-                {
-                    Category cat = new Category();
-                    if (categoryId == category.Id)
-                    {
-                        cat.Name = category.Name;
-                        selected.Add(cat);
-                    }
-                    else
-                    {
-                        cat.Name = category.Name;
-                        unselected.Add(cat);
-                    }
-                }
-            }
+            //foreach(var category in Categories)
+            //{
+            //    foreach(var categoryId in CategoryIds)
+            //    {
+            //        CategoryListViewModel cat = new CategoryListViewModel();
+            //        if (categoryId == category.Id)
+            //        {
+            //            cat.Name = category.Name;
+            //            cat.Id = category.Id;
+            //            selected.Add(cat);
+            //        }
+                 
+            //    }
+            //}
 
-            Selected = selected;
-            Unselected = unselected;
+            //Selected = selected;
+            //Unselected = unselected;
         }
 
         public void Update(int id, RepositoryFactory repositoryFactory)
@@ -90,6 +88,12 @@ namespace StLouisTravel.ViewModels.Locations
         private List<CategoryLocation> CreateManyToManyRelationships(int locationId)
         {
             return CategoryIds.Select(catId => new CategoryLocation { LocationId = locationId, CategoryId = catId }).ToList();
+        }
+        internal void ResetCategoryList(RepositoryFactory factory)
+        {
+            this.Categories = factory.GetCategoryRepository()
+               .GetModels()
+               .ToList();
         }
     }
 }

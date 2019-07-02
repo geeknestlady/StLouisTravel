@@ -45,46 +45,21 @@
                 <span asp-validation-for="Region" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="CategoryIds" class="control-label"></</label>
-                @foreach (var select in Model.Selected)
+                <label asp-for="CategoryIds" class="control-label"></label>
+                @foreach (var category in Model.Categories)
                 {
-                <div>
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>
-                                    <label>@select.Name</label>
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        <td>
-                            <input type="checkbox" name="CategoryIds" value="@select.Id" checked/>
-                        </td>
-                        </tbody>
-                    </table>
-                </div>
-                }
-                @foreach (var unselect in Model.Unselected)
-                {
-                <div>
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>
-                                    <label>@unselect.Name</label>
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        <td>
-                            <input type="checkbox" name="CategoryIds" value="@unselect.Id" />
-                        </td>
-                        </tbody>
-                    </table>
-                </div>
+                    <label>@category.Name</label>
+                    @if (Model.CategoryIds.Contains(category.Id))
+                    {
+                        <input type="checkbox" name="CategoryIds" value="@category.Id" checked />
+                    }
+                    else
+                    {
+                        <input type="checkbox" name="CategoryIds" value="@category.Id" />
+                    }
                 }
             </div>
+</div>
 </div>
             <div class="form-group">
                 <label asp-for="Description" class="control-label"></label>
