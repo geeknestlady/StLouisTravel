@@ -13,6 +13,7 @@ namespace StLouisTravel.Data
         int Save(T model);
         void Delete(int id);
         void Update(T model);
+        void DeleteMany(T model);
 
     }
 }

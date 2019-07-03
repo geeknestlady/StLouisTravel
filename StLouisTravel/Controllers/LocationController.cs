@@ -75,9 +75,8 @@ namespace StLouisTravel.Controllers
             location.Update(id, repositoryFactory);
             return RedirectToAction(actionName: nameof(Index));
         }
+  
 
-       
-      
 
     }
 }

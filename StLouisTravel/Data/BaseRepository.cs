@@ -48,6 +48,11 @@ namespace StLouisTravel.Data
             context.Update(model);
             context.SaveChanges();
         }
+        public void DeleteMany(TEntity model)
+        {
+            context.Remove(model);
+            context.SaveChanges();
+        }
 
     }
 }

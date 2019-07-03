@@ -81,13 +81,25 @@ namespace StLouisTravel.ViewModels.Locations
                 Description = this.Description,
                 
         };
-            List<CategoryLocation> locationCategories = CreateManyToManyRelationships(location.Id);
+            List<CategoryLocation> locationCategories = CreateManyToManyRelationships(location.Id, repositoryFactory);
             location.CategoryLocations = locationCategories;
             repositoryFactory.GetLocationRepository().Update(location);
         }
-        private List<CategoryLocation> CreateManyToManyRelationships(int locationId)
+        private List<CategoryLocation> CreateManyToManyRelationships(int locationId, RepositoryFactory repositoryFactory)
         {
-            return CategoryIds.Select(catId => new CategoryLocation { LocationId = locationId, CategoryId = catId }).ToList();
+            List<Models.CategoryLocation> cats =
+                repositoryFactory.GetCategoryLocationRepository()
+                .GetModels()
+                .Where(s => s.LocationId == locationId)
+                .ToList();
+            foreach (var item in cats)
+            {
+                repositoryFactory.GetCategoryLocationRepository().DeleteMany(item);
+            }
+
+            return CategoryIds
+                .Select(catId => new Models.CategoryLocation { LocationId = locationId, CategoryId = catId })
+                .ToList();
         }
         internal void ResetCategoryList(RepositoryFactory factory)
         {
